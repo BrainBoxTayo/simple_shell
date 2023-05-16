@@ -16,21 +16,21 @@ int main(void)
 	while (flag == 1)
 	{
 		size_t argc = 0;
-		int i = 0;
+		int i = 0;/*increment in variable for the strtok to argv*/
 		char *line = NULL, *token = NULL;
 		char *delim = " \n";
 		pid_t pid1;
-		size_t j = 10;
+		size_t j = 10;/*malloc var for getline*/
 		char **argv;
 
-		printf("Temitayo$ ");
+		printf("$:) ");/*prompt*/
 		if (getline(&line, &j, stdin) == -1)
-			printf("Error\n");
+			perror("Error\n");
 		if (line == NULL)
 			free(line);
-
 		else
 		{
+			/*count number of arguments passed*/			
 			token = strtok(line, delim);
 			while (token)
 			{
@@ -53,11 +53,9 @@ int main(void)
 			}
 			else if (pid1 > 0)
 			{
-				wait(NULL);
-				
+				wait(NULL);				
 				continue;
-			}
-			
+			}			
 		}
 		free(argv), free(line);
 		}
