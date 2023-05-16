@@ -17,7 +17,7 @@ int main(void)
 	{
 		size_t argc = 0;
 		int i = 0;/*increment in variable for the strtok to argv*/
-		char *line = NULL, *token = NULL;
+		char *line = NULL, *line_cpy = NULL, *token = NULL;
 		char *delim = " \n";
 		pid_t pid1;
 		size_t j = 10;/*malloc var for getline*/
@@ -30,14 +30,15 @@ int main(void)
 			free(line);
 		else
 		{
+			line_cpy = strdup(line);
 			/*count number of arguments passed*/			
-			token = strtok(line, delim);
+			token = strtok(line_cpy, delim);
 			while (token)
 			{
-				token = strtok(NULL, delim);
 				argc++;
+				token = strtok(NULL, delim);				
 			}
-			argv = malloc(sizeof(char *) * argc);
+			argv = malloc(sizeof(char *) * (argc + 1));
 			token = strtok(line, delim);
 			while (token)
 			{
