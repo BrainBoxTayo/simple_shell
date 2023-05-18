@@ -1,90 +1,45 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <sys/wait.h>
-#include <string.h>
-#include <unistd.h>
-/*
- *execve helps to execute programs
- * first arg is filename, second is argument, third is envp
- * hmm
+#include "shell.h"
+/**
+ * main - main function for shell
+ * @av: argument vector
+ * @ac: argument count
+ * @envp: environment
+ * Return: 0 on success
  */
-char **environ;
-int main(int argc, char **argv)
+
+int main(int ac, char *av[], char *envp[])
 {
+	char *line = NULL;
+	size_t linesize = 10;
+	int status;
+	pid_t pid;
 	int flag = 1;
-	do
+	while (flag == 1)
 	{
-		if (argc == 1)
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, PROMPT, 3);
+		if (getline(&line, &linesize, stdin) == -1)
+			break;
+		if (line == NULL)
+			exit(0);
+		av = token_gen(line);
+		if (!av[0])
 		{
-			while (flag)
-			{
-				size_t arg_count = 0;
-				int i = 0; /*increment in variable for the strtok to argv*/
-				char *line = NULL, *line_cpy = NULL, *token = NULL;
-				char *delim = " \n";
-				pid_t pid1;
-				size_t j = 10; /*malloc var for getline*/
-				char **arg_v;
-
-				printf("$:) "); /*prompt*/
-				ssize_t line_size = getline(&line, &j, stdin);
-				if (line_size == -1)
-				{
-					perror("Error");
-					continue;
-				}
-				if (line_size == 1)
-				{
-					free(line);
-					continue;
-				}
-
-				line_cpy = strdup(line);
-				/*count number of arguments passed*/
-				token = strtok(line_cpy, delim);
-				while (token)
-				{
-					arg_count++;
-					token = strtok(NULL, delim);
-				}
-				arg_v = malloc(sizeof(char *) * (argc + 1));
-				token = strtok(line, delim);
-				while (token)
-				{
-					arg_v[i] = token;
-					token = strtok(NULL, delim);
-					i++;
-				}
-				pid1 = fork();
-				if (pid1 == 0)
-				{
-					if (execve(arg_v[0], arg_v, environ) == -1)
-						perror("./shell");
-				}
-				else if (pid1 > 0)
-				{
-					wait(NULL);
-					continue;
-				}
-
-				free(arg_v), free(line);
-			}
+			free(av);
+			continue;
 		}
-		else
+		pid = fork();
+		if (pid == 0)
 		{
-			pid_t pid1 = fork();
-			if (pid1 == 0)
-			{
-				if (execve(argv[1], argv, environ) == -1)
-					perror("./shell");
-			}
-			else if (pid1 > 0)
-			{
-				wait(NULL);
-				flag = 2;
-			}
+			if (execve(av[0], av, envp) == -1)
+				perror("./shell");
 		}
-	} while (flag == 1);
+		else if (pid > 0)
+		{
+			wait(&status);
+		}
+
+		free(av), free(line);
+	}
 	return (0);
 }
