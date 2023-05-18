@@ -14,6 +14,8 @@ int main(int ac, char *av[], char *envp[])
 	int status;
 	pid_t pid;
 	int flag = 1;
+
+	signal(SIGINT, SIG_IGN);
 	while (flag == 1)
 	{
 		if (isatty(STDIN_FILENO))
@@ -28,6 +30,16 @@ int main(int ac, char *av[], char *envp[])
 			free(av);
 			continue;
 		}
+		if (_strncmp(av[0], "exit", 4) == 0)
+		{
+			free(av), free(line);
+			exit(0);
+		}
+		if (_strncmp(av[0], "env", 3) == 0)
+		{
+			printEnvironment();
+			continue;
+		}
 		pid = fork();
 		if (pid == 0)
 		{
@@ -38,8 +50,8 @@ int main(int ac, char *av[], char *envp[])
 		{
 			wait(&status);
 		}
-
-		free(av), free(line);
+		free(av);
 	}
+	free(line);
 	return (0);
 }

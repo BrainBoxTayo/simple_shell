@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "signal.h": "c",
-        "stat.h": "c"
+        "stat.h": "c",
+        "shell.h": "c"
     }
 }
