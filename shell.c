@@ -30,6 +30,11 @@ int main(int ac, char *av[], char *envp[])
 			free(av);
 			continue;
 		}
+		if (_strncmp(av[0], "$PATH", 5) == 0)
+		{
+			char *path = _getenv("PATH");
+			puts(path);
+		}
 		if (_strncmp(av[0], "exit", 4) == 0)
 		{
 			free(av), free(line);
@@ -49,6 +54,7 @@ int main(int ac, char *av[], char *envp[])
 		else if (pid > 0)
 		{
 			wait(&status);
+			continue;
 		}
 		free(av);
 	}

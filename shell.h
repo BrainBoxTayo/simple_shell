@@ -18,6 +18,7 @@
 #define PROMPT "($)"
 
 extern char **environ;
+char *_getenv(char *envname);
 int _putchar(char c);
 void printEnvironment(void);
 int _strlen(const char *s);
