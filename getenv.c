@@ -1,21 +1,20 @@
 #include "shell.h"
 /**
  * _getenv - gets environment var
- * @av: argument vector
- * @envp: environment
+ * @envname: argument vector
  * Return: 0 on success
  */
 char *_getenv(char *envname)
 {
-    int i = 0;
+	int i = 0;
 
-    while (environ[i] != NULL)
-    {
-        if (_strncmp(environ[i], envname, _strlen(envname)) == 0)
-        {
-            return (environ[i]);
-        }
-        i++;
-    }
-    return (NULL);
+	while (environ[i] != NULL)
+	{
+		if (_strncmp(environ[i], envname, _strlen(envname)) == 0)
+		{
+			return (environ[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

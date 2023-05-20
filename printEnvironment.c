@@ -7,6 +7,7 @@ void printEnvironment(void)
 {
 	int i = 0;
 	int j = 0;
+
 	while (environ[i] != NULL)
 	{
 		j = 0;
