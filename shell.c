@@ -32,7 +32,7 @@ int main(__attribute__((unused))int ac, char *av[], char *envp[])
 		}
 		if (_strncmp(av[0], "exit", 4) == 0)
 		{
-			free(av), free(line);
+			free(av);
 			exit(0);
 		}
 		if (_strncmp(av[0], "env", 3) == 0)
@@ -45,16 +45,16 @@ int main(__attribute__((unused))int ac, char *av[], char *envp[])
 			av[0] = findExecutable(av);
 			if (av[0] == NULL)
 			{
-				perror("yoo");
+				perror("./hsh");
 				free(av);
 				continue;
 			}
-		}			
+		}
 		pid = fork();
 		if (pid == 0)
 		{
 			if (execve(av[0], av, envp) == -1)
-				perror("./shell");
+				perror("./hsh");
 		}
 		else if (pid > 0)
 		{
