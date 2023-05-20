@@ -12,12 +12,13 @@
 #include <errno.h>
 
 #define MAX_PATH_LENGTH 1024
-#define PATH_DELIMITER ":"
+#define PATH_DELIMITER "=:"
 #define WORDSIZE 1024
 #define LINE_DELIMETER " \n"
 #define PROMPT "($)"
 
 extern char **environ;
+char *findExecutable(char *av[]);
 char *_getenv(char *envname);
 int _putchar(char c);
 void printEnvironment(void);

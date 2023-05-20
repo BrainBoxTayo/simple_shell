@@ -40,6 +40,15 @@ int main(int ac, char *av[], char *envp[])
 			printEnvironment();
 			continue;
 		}
+		if (((_strncmp(av[0], "/", 1)) && (_strncmp(av[0], ".", 1))))
+		{
+			av[0] = findExecutable(av);
+			if (av[0] == NULL)
+			{
+				perror("./shell");
+				continue;
+			}
+		}			
 		pid = fork();
 		if (pid == 0)
 		{
