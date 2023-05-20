@@ -1,14 +1,14 @@
 #include "shell.h"
 /**
  * findExcecutable - handles the path
- *
+ * @av: line from terminal
+ * Return: full path of the executable
  */
 char *findExecutable(char *av[])
 {
 	char *path = NULL;
 	char *token = NULL;
 	char *path_tok = NULL;
-	char *result = NULL;
 	int returncheck;
 
 	path = _getenv("PATH");
@@ -22,6 +22,7 @@ char *findExecutable(char *av[])
 		returncheck = access(path_tok, F_OK);
 		if (returncheck == 0)
 		{
+			free(path);
 			return (path_tok);
 		}
 		free(path_tok);

@@ -7,7 +7,7 @@
  * Return: 0 on success
  */
 
-int main(int ac, char *av[], char *envp[])
+int main(__attribute__((unused))int ac, char *av[], char *envp[])
 {
 	char *line = NULL;
 	size_t linesize = 10;
@@ -45,7 +45,8 @@ int main(int ac, char *av[], char *envp[])
 			av[0] = findExecutable(av);
 			if (av[0] == NULL)
 			{
-				perror("./shell");
+				perror("yoo");
+				free(av);
 				continue;
 			}
 		}			

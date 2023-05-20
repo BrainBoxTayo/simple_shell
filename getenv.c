@@ -7,12 +7,15 @@
 char *_getenv(char *envname)
 {
 	int i = 0;
+	char *env_cpy = NULL;
 
 	while (environ[i] != NULL)
 	{
 		if (_strncmp(environ[i], envname, _strlen(envname)) == 0)
 		{
-			return (environ[i]);
+			env_cpy = malloc(sizeof(char) * (_strlen(environ[i]) + 1));
+			_strcpy(env_cpy, environ[i]);
+			return (env_cpy);
 		}
 		i++;
 	}
