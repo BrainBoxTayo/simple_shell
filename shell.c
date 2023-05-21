@@ -54,7 +54,12 @@ int main(__attribute__((unused))int ac, char *av[], char *envp[])
 		if (pid == 0)
 		{
 			if (execve(av[0], av, envp) == -1)
+			{
 				perror("./hsh");
+				free(av);
+				exit(0);
+			}
+				
 		}
 		else if (pid > 0)
 		{
