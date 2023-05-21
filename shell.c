@@ -3,7 +3,6 @@
  * main - simple UNIX command line interpreter
  * @av: argument vector
  * @ac: argument count
- * @envp: environment
  * Return: 0 on success
  */
 
@@ -26,7 +25,7 @@ int main(__attribute__((unused))int ac, char *av[])
 		if (getline(&line, &linesize, stdin) == -1)
 			break;
 		if (line == NULL)
-			exit(0);
+			break;
 		av = token_gen(line);
 		if (!av[0])
 		{
@@ -48,10 +47,10 @@ int main(__attribute__((unused))int ac, char *av[])
 		{
 			av[0] = findExecutable(av);
 			if (av[0] == NULL)
-			{	
+			{
 				count += 1;
-				free(av);		
-				errors(nama, av_cpy, 2, count);				
+				free(av);
+				errors(nama, av_cpy, 2, count);
 				continue;
 			}
 		}
