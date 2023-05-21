@@ -44,7 +44,7 @@ int main(__attribute__((unused))int ac, char *av[])
 			continue;
 		}
 		av_cpy = av[0];
-		if (((_strncmp(av[0], "/", 1)) && (_strncmp(av[0], ".", 1))))
+		if (((_strncmp(av[0], "./", 2)) && (_strncmp(av[0], "/", 1))))
 		{
 			av[0] = findExecutable(av);
 			if (av[0] == NULL)
@@ -60,7 +60,11 @@ int main(__attribute__((unused))int ac, char *av[])
 		if (pid == 0)
 		{
 			if (execve(av[0], av, environ) == -1)
-				errors(nama, av_cpy, 3, count);;
+			{
+				free(av);
+				errors(nama, av_cpy, 3, count);
+				exit(0);
+			}
 		}
 		else if (pid > 0)
 		{
