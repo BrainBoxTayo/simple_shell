@@ -18,6 +18,9 @@
 #define PROMPT "($)"
 
 extern char **environ;
+int num_len(int num);
+void errors(char *nama, char *av, int num, int count);
+char *_itoa(int num);
 char *findExecutable(char *av[]);
 char *_getenv(char *envname);
 int _putchar(char c);
@@ -30,5 +33,7 @@ char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
+void errorpermissiondenied(char *nama, char *av, int count);
+void errornotfound(char *nama, char *av, int count);
 char **token_gen(char *line);
 #endif

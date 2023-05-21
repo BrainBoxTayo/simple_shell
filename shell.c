@@ -1,14 +1,17 @@
 #include "shell.h"
 /**
- * main - main function for shell
+ * main - simple UNIX command line interpreter
  * @av: argument vector
  * @ac: argument count
  * @envp: environment
  * Return: 0 on success
  */
 
-int main(__attribute__((unused))int ac, char *av[], char *envp[])
+int main(__attribute__((unused))int ac, char *av[])
 {
+	char *nama = av[0];
+	char *av_cpy;
+	int count = 0;
 	char *line = NULL;
 	size_t linesize = 10;
 	int status;
@@ -40,21 +43,24 @@ int main(__attribute__((unused))int ac, char *av[], char *envp[])
 			printEnvironment();
 			continue;
 		}
+		av_cpy = av[0];
 		if (((_strncmp(av[0], "/", 1)) && (_strncmp(av[0], ".", 1))))
 		{
 			av[0] = findExecutable(av);
 			if (av[0] == NULL)
-			{
-				perror("./hsh");
-				free(av);
+			{	
+				count += 1;
+				free(av);		
+				errors(nama, av_cpy, 2, count);				
 				continue;
 			}
 		}
 		pid = fork();
+		count += 1;
 		if (pid == 0)
 		{
-			if (execve(av[0], av, envp) == -1)
-				perror("./hsh");
+			if (execve(av[0], av, environ) == -1)
+				errors(nama, av_cpy, 3, count);;
 		}
 		else if (pid > 0)
 		{
