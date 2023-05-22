@@ -23,7 +23,11 @@ int main(__attribute__((unused))int ac, char *av[])
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, PROMPT, 3);
 		if (getline(&line, &linesize, stdin) == -1)
+		{
+			_putchar('\n');
+			fflush(STDIN_FILENO);
 			break;
+		}
 		if (line == NULL)
 			break;
 		av = token_gen(line);
