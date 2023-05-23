@@ -36,4 +36,6 @@ int _strncmp(const char *s1, const char *s2, size_t n);
 void errorpermissiondenied(char *nama, char *av, int count);
 void errornotfound(char *nama, char *av, int count);
 char **token_gen(char *line);
+int execute(char *av[], char *nama, char *av_cpy, int count);
+int comparestring(char *av[]);
 #endif
