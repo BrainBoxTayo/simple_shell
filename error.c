@@ -79,10 +79,14 @@ void errors(char *nama, char *av, int num, int count)
 	if (num == 2)
 	{
 		errorpermissiondenied(nama, av, count);
+		if (isatty(STDIN_FILENO))
+			_putchar('\n');
 	}
 	else if (num == 3)
 	{
 		errornotfound(nama, av, count);
+		if (isatty(STDIN_FILENO))
+			_putchar('\n');
 	}
 }
 /**
@@ -95,7 +99,7 @@ void errors(char *nama, char *av, int num, int count)
 void errorpermissiondenied(char *nama, char *av, int count)
 {
 	int i;
-	char *error2 = ": Permission denied\n";
+	char *error2 = ": Permission denied";
 	char *count_arr = _itoa(count);
 
 	for (i = 0; nama[i] != '\0'; i++)
@@ -123,7 +127,7 @@ void errorpermissiondenied(char *nama, char *av, int count)
 void errornotfound(char *nama, char *av, int count)
 {
 	int i;
-	char *error3 = ": not found\n";
+	char *error3 = ": not found";
 	char *count_arr = _itoa(count);
 
 	for (i = 0; nama[i] != '\0'; i++)
