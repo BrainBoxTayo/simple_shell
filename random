@@ -10,3 +10,4 @@ isatty
 execve
 wait
 opendir
+signal
