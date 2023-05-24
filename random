@@ -12,3 +12,5 @@ wait
 opendir
 signal
 write
+getcwd
+
