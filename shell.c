@@ -50,12 +50,10 @@ int main(__attribute__((unused)) int ac, char *av[])
 		}			
 		else if (status == 2)
 		{
-			free(av);
 			errors(nama, av_cpy, 2, count);
 			continue;
 		}		
 	}
-	free(line);
 	return (0);
 }
 /**
