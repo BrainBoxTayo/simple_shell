@@ -9,3 +9,4 @@ getline
 isatty
 execve
 wait
+opendir
