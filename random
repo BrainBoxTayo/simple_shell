@@ -18,4 +18,5 @@ setenv
 getenv
 env
 malloc
-free 
+free
+kill 
