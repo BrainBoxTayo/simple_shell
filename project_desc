@@ -1,2 +1,5 @@
 Simple shell project to code shell environment using C programming
 
+Your Shell should:
+Display a prompt and wait for the user to type a command. A command line always ends with a new line.
+The prompt is displayed again each time a command has been executed.
