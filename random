@@ -17,4 +17,5 @@ readdir
 setenv
 getenv
 env
-malloc 
+malloc
+free 
