@@ -22,7 +22,8 @@ free
 kill
 lstat
 fstat
-getpid 
+getpid
+read 
 
 Terminologies
 zombie state
