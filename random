@@ -6,3 +6,4 @@ fflush
 perror
 strtok
 getline
+isatty
