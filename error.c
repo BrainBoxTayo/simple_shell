@@ -99,18 +99,18 @@ void errorpermissiondenied(char *nama, char *av, int count)
 	char *count_arr = _itoa(count);
 
 	for (i = 0; nama[i] != '\0'; i++)
-		_putchar(nama[i]);
-	_putchar(':');
-	_putchar(' ');
+		_putchare(nama[i]);
+	_putchare(':');
+	_putchare(' ');
 	for (i = 0; count_arr[i] != '\0'; i++)
-		_putchar(count_arr[i]);
+		_putchare(count_arr[i]);
 	free(count_arr);
-	_putchar(':');
-	_putchar(' ');
+	_putchare(':');
+	_putchare(' ');
 	for (i = 0; av[i] != '\0'; i++)
-		_putchar(av[i]);
+		_putchare(av[i]);
 	for (i = 0; error2[i] != '\0'; i++)
-		_putchar(error2[i]);	
+		_putchare(error2[i]);	
 }
 
 /**
@@ -127,16 +127,16 @@ void errornotfound(char *nama, char *av, int count)
 	char *count_arr = _itoa(count);
 
 	for (i = 0; nama[i] != '\0'; i++)
-		_putchar(nama[i]);
-	_putchar(':');
-	_putchar(' ');
+		_putchare(nama[i]);
+	_putchare(':');
+	_putchare(' ');
 	for (i = 0; count_arr[i] != '\0'; i++)
-		_putchar(count_arr[i]);
+		_putchare(count_arr[i]);
 	free(count_arr);
-	_putchar(':');
-	_putchar(' ');
+	_putchare(':');
+	_putchare(' ');
 	for (i = 0; av[i] != '\0'; i++)
-		_putchar(av[i]);
+		_putchare(av[i]);
 	for (i = 0; error3[i] != '\0'; i++)
-		_putchar(error3[i]);
+		_putchare(error3[i]);
 }
