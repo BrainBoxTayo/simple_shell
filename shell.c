@@ -98,20 +98,20 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 
 	if (((_strncmp(av[0], "./", 2)) && (_strncmp(av[0], "/", 1))))
 	{
-		holder = findExecutable(av);
-		av[0] = holder;		
-		if (av[0] == NULL)
+		holder = findExecutable(av);		
+		if (holder== NULL)
 		{
 			free(av);
 			return (2);
 		}
-		free(holder);
+		av[0] = holder;		
 	}
 	pid = fork();
 	if (pid == 0)
 	{
 		if (execve(av[0], av, environ) == -1)
 		{
+			free(holder);
 			free(av);
 			errors(nama, av_cpy, 3, count);
 			exit(EXIT_FAILURE);
@@ -120,6 +120,7 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 	else if (pid > 0)
 	{
 		wait(&status);
+		free(holder);
 		return (1);
 	}
 	return (0);
