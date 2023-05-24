@@ -16,11 +16,11 @@ int main(__attribute__((unused)) int ac, char *av[])
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, PROMPT, 3);
-		if (getline(&line, &linesize, stdin) == -1)
-		{			
+		if (_getline(&line, &linesize, stdin) == -1)
+		{
 			if (isatty(STDIN_FILENO))
 				_putchar('\n');
-			free(line),	fflush(STDIN_FILENO), exit(EXIT_SUCCESS);
+			free(line), fflush(STDIN_FILENO), exit(EXIT_SUCCESS);
 		}
 		av = token_gen(line);
 		if (!av[0])
@@ -33,7 +33,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 		{
 			free(av);
 			continue;
-		}			
+		}
 		else if (comparestring(av) == 0)
 		{
 			free(av), free(line);
@@ -45,12 +45,12 @@ int main(__attribute__((unused)) int ac, char *av[])
 		{
 			free(av);
 			continue;
-		}			
+		}
 		else if (status == 2)
 		{
 			errors(nama, av_cpy, 2, count);
 			continue;
-		}		
+		}
 	}
 	return (0);
 }
@@ -94,13 +94,13 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 
 	if (((_strncmp(av[0], "./", 2)) && (_strncmp(av[0], "/", 1))))
 	{
-		holder = findExecutable(av);		
-		if (holder== NULL)
+		holder = findExecutable(av);
+		if (holder == NULL)
 		{
 			free(av);
 			return (2);
 		}
-		av[0] = holder;		
+		av[0] = holder;
 	}
 	pid = fork();
 	if (pid == 0)
@@ -117,7 +117,6 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 	{
 		wait(&status);
 		free(holder);
-		
 		return (1);
 	}
 	return (0);
