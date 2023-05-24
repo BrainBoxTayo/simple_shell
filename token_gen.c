@@ -13,7 +13,6 @@ char **token_gen(char *line)
 	cmd = malloc(sizeof(char *) * WORDSIZE);
 	if (cmd == NULL)
 	{
-		perror("mem could not be alloced");
 		exit(EXIT_FAILURE);
 	}
 	token = strtok(line, LINE_DELIMETER);

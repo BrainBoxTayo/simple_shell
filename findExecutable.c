@@ -17,7 +17,10 @@ char *findExecutable(char *av[])
 	{
 		path_tok = malloc(sizeof(char) * (_strlen(token) + _strlen(av[0]) + 2));
 		if (!path_tok)
+		{
+			free(path);
 			return (NULL);
+		}
 		path_tok = _strcpy(path_tok, token);
 		path_tok = _strcat(path_tok, "/");
 		path_tok = _strcat(path_tok, av[0]);

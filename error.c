@@ -108,13 +108,13 @@ void errorpermissiondenied(char *nama, char *av, int count)
 	_putchar(' ');
 	for (i = 0; count_arr[i] != '\0'; i++)
 		_putchar(count_arr[i]);
+	free(count_arr);
 	_putchar(':');
 	_putchar(' ');
 	for (i = 0; av[i] != '\0'; i++)
 		_putchar(av[i]);
 	for (i = 0; error2[i] != '\0'; i++)
-		_putchar(error2[i]);
-	free(count_arr);
+		_putchar(error2[i]);	
 }
 
 /**
@@ -136,11 +136,11 @@ void errornotfound(char *nama, char *av, int count)
 	_putchar(' ');
 	for (i = 0; count_arr[i] != '\0'; i++)
 		_putchar(count_arr[i]);
+	free(count_arr);
 	_putchar(':');
 	_putchar(' ');
 	for (i = 0; av[i] != '\0'; i++)
 		_putchar(av[i]);
 	for (i = 0; error3[i] != '\0'; i++)
 		_putchar(error3[i]);
-	free(count_arr);
 }

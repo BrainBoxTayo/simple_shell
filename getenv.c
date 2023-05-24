@@ -15,7 +15,10 @@ char *_getenv(char *envname)
 		{
 			env_cpy = malloc(sizeof(char) * (_strlen(environ[i]) + 1));
 			if (!env_cpy)
+			{
+				free(env_cpy);
 				return (NULL);
+			}				
 			_strcpy(env_cpy, environ[i]);
 			return (env_cpy);
 		}

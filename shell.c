@@ -18,6 +18,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 			write(STDOUT_FILENO, PROMPT, 3);
 		if (getline(&line, &linesize, stdin) == -1)
 		{
+			free(line);
 			fflush(STDIN_FILENO);
 			_putchar('\n');
 			exit(EXIT_FAILURE);
@@ -30,24 +31,31 @@ int main(__attribute__((unused)) int ac, char *av[])
 		}
 		av_cpy = av[0];
 		if (comparestring(av) == 1)
+		{
+			free(av);
 			continue;
+		}			
 		else if (comparestring(av) == 0)
 		{
 			free(av);
-			exit(0);
+			free(line);
+			exit(EXIT_SUCCESS);
 		}
 		count += 1;
 		status = execute(av, nama, av_cpy, count);
 		if (status == 1)
+		{
+			free(av);
 			continue;
+		}			
 		else if (status == 2)
 		{
 			free(av);
 			errors(nama, av_cpy, 2, count);
 			continue;
-		}
-		free(line);
+		}		
 	}
+	free(line);
 	return (0);
 }
 /**
@@ -86,14 +94,18 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 {
 	pid_t pid;
 	int status;
+	char *holder = NULL;
 
 	if (((_strncmp(av[0], "./", 2)) && (_strncmp(av[0], "/", 1))))
 	{
-		av[0] = findExecutable(av);
+		holder = findExecutable(av);
+		av[0] = holder;		
 		if (av[0] == NULL)
 		{
+			free(av);
 			return (2);
 		}
+		free(holder);
 	}
 	pid = fork();
 	if (pid == 0)
