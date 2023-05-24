@@ -35,17 +35,11 @@ int main(__attribute__((unused)) int ac, char *av[])
 			continue;
 		}
 		else if (comparestring(av) == 0)
-		{
-			free(av), free(line);
-			exit(EXIT_SUCCESS);
-		}
+			free(av), free(line), exit(EXIT_SUCCESS);
 		count += 1;
 		status = execute(av, nama, av_cpy, count);
 		if (status == 1)
-		{
-			free(av);
 			continue;
-		}
 		else if (status == 2)
 		{
 			errors(nama, av_cpy, 2, count);
@@ -116,6 +110,7 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 	else if (pid > 0)
 	{
 		wait(&status);
+		free(av);
 		free(holder);
 		return (1);
 	}
