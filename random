@@ -20,7 +20,8 @@ env
 malloc
 free
 kill
-lstat 
+lstat
+fstat 
 
 Terminologies
 zombie state
