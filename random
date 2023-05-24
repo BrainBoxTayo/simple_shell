@@ -16,4 +16,5 @@ getcwd
 readdir
 setenv
 getenv
-env 
+env
+malloc 
