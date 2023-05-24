@@ -16,7 +16,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, PROMPT, 3);
-		if (_getline(&line, &linesize, stdin) == -1)
+		if (getline(&line, &linesize, stdin) == -1)
 		{
 			if (isatty(STDIN_FILENO))
 				_putchar('\n');

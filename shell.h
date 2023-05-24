@@ -39,7 +39,4 @@ char **token_gen(char *line);
 int execute(char *av[], char *nama, char *av_cpy, int count);
 int comparestring(char *av[]);
 int _putchare(char c);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-void assign_lineptr(char **lineptr, size_t *n, char *buffer, size_t b);
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 #endif
