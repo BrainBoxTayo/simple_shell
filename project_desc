@@ -8,3 +8,6 @@ The prompt is displayed again each time a command has been executed.
 If an executable cannot be found, print an error message and display the prompt again.
 Handle errors.
 You have to handle the “end of file” condition (Ctrl+D)
+
+Simple shell 0.1 +
+Handle command lines with arguments
