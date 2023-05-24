@@ -20,9 +20,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 		{			
 			if (isatty(STDIN_FILENO))
 				_putchar('\n');
-			free(line);
-			fflush(STDIN_FILENO);
-			exit(EXIT_SUCCESS);
+			free(line),	fflush(STDIN_FILENO), exit(EXIT_SUCCESS);
 		}
 		av = token_gen(line);
 		if (!av[0])
@@ -38,8 +36,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 		}			
 		else if (comparestring(av) == 0)
 		{
-			free(av);
-			free(line);
+			free(av), free(line);
 			exit(EXIT_SUCCESS);
 		}
 		count += 1;
