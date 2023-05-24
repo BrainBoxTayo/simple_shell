@@ -22,7 +22,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 				_putchar('\n');
 			free(line);
 			fflush(STDIN_FILENO);
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		av = token_gen(line);
 		if (!av[0])
