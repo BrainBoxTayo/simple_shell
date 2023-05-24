@@ -9,7 +9,7 @@
 int main(__attribute__((unused)) int ac, char *av[])
 {
 	char *nama = av[0], *av_cpy, *line = NULL;
-	size_t count = 0, linesize = 10;
+	size_t count = 0, linesize = 10, status;
 
 	signal(SIGINT, SIG_IGN);
 	while (1)
@@ -20,7 +20,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 		{
 			fflush(STDIN_FILENO);
 			_putchar('\n');
-			exit(0);
+			exit(EXIT_FAILURE);
 		}
 		av = token_gen(line);
 		if (!av[0])
@@ -37,9 +37,10 @@ int main(__attribute__((unused)) int ac, char *av[])
 			exit(0);
 		}
 		count += 1;
-		if (execute(av, nama, av_cpy, count) == 1)
+		status = execute(av, nama, av_cpy, count);
+		if (status == 1)
 			continue;
-		else if (execute(av, nama, av_cpy, count) == 2)
+		else if (status == 2)
 		{
 			free(av);
 			errors(nama, av_cpy, 2, count);
@@ -101,7 +102,7 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 		{
 			free(av);
 			errors(nama, av_cpy, 3, count);
-			exit(0);
+			exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid > 0)
@@ -109,6 +110,5 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 		wait(&status);
 		return (1);
 	}
-	free(av);
 	return (0);
 }
