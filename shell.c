@@ -49,7 +49,7 @@ int main(__attribute__((unused)) int ac, char *av[])
 			free(av);
 			continue;
 		}			
-		else if (status == 3)
+		else if (status == 2)
 		{
 			errors(nama, av_cpy, 2, count);
 			continue;
@@ -101,7 +101,7 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 		if (holder== NULL)
 		{
 			free(av);
-			return (3);
+			return (2);
 		}
 		av[0] = holder;		
 	}
@@ -120,11 +120,8 @@ int execute(char *av[], char *nama, char *av_cpy, int count)
 	{
 		wait(&status);
 		free(holder);
-		if (WIFEXITED(status))
-			status = WEXITSTATUS(status);
-		if (!isatty(STDIN_FILENO))
-			exit (status);
-		return(0);
+		
+		return (1);
 	}
 	return (0);
 }

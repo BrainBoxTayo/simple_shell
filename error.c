@@ -57,7 +57,7 @@ char *_itoa(int num)
 	}
 
 	len--;
-	do {
+	do	{
 		buffer[len] = (num1 % 10) + '0';
 		num1 /= 10;
 		len--;
@@ -110,7 +110,7 @@ void errorpermissiondenied(char *nama, char *av, int count)
 	for (i = 0; av[i] != '\0'; i++)
 		_putchare(av[i]);
 	for (i = 0; error2[i] != '\0'; i++)
-		_putchare(error2[i]);	
+		_putchare(error2[i]);
 }
 
 /**

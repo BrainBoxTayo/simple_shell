@@ -18,7 +18,7 @@ char *_getenv(char *envname)
 			{
 				free(env_cpy);
 				return (NULL);
-			}				
+			}
 			_strcpy(env_cpy, environ[i]);
 			return (env_cpy);
 		}
