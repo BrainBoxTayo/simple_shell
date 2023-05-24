@@ -38,4 +38,5 @@ void errornotfound(char *nama, char *av, int count);
 char **token_gen(char *line);
 int execute(char *av[], char *nama, char *av_cpy, int count);
 int comparestring(char *av[]);
+int _putchare(char c);
 #endif
