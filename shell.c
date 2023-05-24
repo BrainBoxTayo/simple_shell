@@ -17,11 +17,12 @@ int main(__attribute__((unused)) int ac, char *av[])
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, PROMPT, 3);
 		if (getline(&line, &linesize, stdin) == -1)
-		{
+		{			
+			if (isatty(STDIN_FILENO))
+				_putchar('\n');
 			free(line);
 			fflush(STDIN_FILENO);
-			_putchar('\n');
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
 		av = token_gen(line);
 		if (!av[0])
