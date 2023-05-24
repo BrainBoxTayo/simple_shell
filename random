@@ -21,7 +21,8 @@ malloc
 free
 kill
 lstat
-fstat 
+fstat
+getpid 
 
 Terminologies
 zombie state
