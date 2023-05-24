@@ -19,7 +19,8 @@ getenv
 env
 malloc
 free
-kill 
+kill
+lstat 
 
 Terminologies
 zombie state
