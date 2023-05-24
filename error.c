@@ -95,7 +95,7 @@ void errors(char *nama, char *av, int num, int count)
 void errorpermissiondenied(char *nama, char *av, int count)
 {
 	int i;
-	char *error2 = ": not found\n";
+	char *error2 = ": Permission denied\n";
 	char *count_arr = _itoa(count);
 
 	for (i = 0; nama[i] != '\0'; i++)
