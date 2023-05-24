@@ -7,3 +7,4 @@ perror
 strtok
 getline
 isatty
+execve
