@@ -31,3 +31,6 @@ You will need to use static variables
 You are not allowed to use getline
 You don’t have to:
 be able to move the cursor
+
+Simple shell 0.2 +
+You are not allowed to use strtok
