@@ -11,3 +11,4 @@ execve
 wait
 opendir
 signal
+write
